@@ -1,0 +1,134 @@
+/* ============================================================
+   JobStatusBadge CSS Module
+   Status colors via --bear-status-* custom properties.
+   ============================================================ */
+
+:root {
+  /* Open */
+  --bear-status-open-bg:   #dbeafe;
+  --bear-status-open-text: #1d4ed8;
+  --bear-status-open-dot:  #3b82f6;
+
+  /* Funded */
+  --bear-status-funded-bg:   #fef9c3;
+  --bear-status-funded-text: #854d0e;
+  --bear-status-funded-dot:  #eab308;
+
+  /* Submitted */
+  --bear-status-submitted-bg:   #fce7f3;
+  --bear-status-submitted-text: #9d174d;
+  --bear-status-submitted-dot:  #ec4899;
+
+  /* Completed */
+  --bear-status-completed-bg:   #dcfce7;
+  --bear-status-completed-text: #166534;
+  --bear-status-completed-dot:  #22c55e;
+
+  /* Rejected */
+  --bear-status-rejected-bg:   #fee2e2;
+  --bear-status-rejected-text: #991b1b;
+  --bear-status-rejected-dot:  #ef4444;
+
+  /* Cancelled */
+  --bear-status-cancelled-bg:   #f3f4f6;
+  --bear-status-cancelled-text: #6b7280;
+  --bear-status-cancelled-dot:  #9ca3af;
+}
+
+[data-theme='dark'] {
+  --bear-status-open-bg:   #1e3a5f;
+  --bear-status-open-text: #93c5fd;
+  --bear-status-open-dot:  #60a5fa;
+
+  --bear-status-funded-bg:   #4a3500;
+  --bear-status-funded-text: #fcd34d;
+  --bear-status-funded-dot:  #f59e0b;
+
+  --bear-status-submitted-bg:   #500724;
+  --bear-status-submitted-text: #f9a8d4;
+  --bear-status-submitted-dot:  #f472b6;
+
+  --bear-status-completed-bg:   #052e16;
+  --bear-status-completed-text: #86efac;
+  --bear-status-completed-dot:  #4ade80;
+
+  --bear-status-rejected-bg:   #450a0a;
+  --bear-status-rejected-text: #fca5a5;
+  --bear-status-rejected-dot:  #f87171;
+
+  --bear-status-cancelled-bg:   #1f2937;
+  --bear-status-cancelled-text: #9ca3af;
+  --bear-status-cancelled-dot:  #6b7280;
+}
+
+/* ── Base badge ──────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  user-select: none;
+  vertical-align: middle;
+}
+
+.icon {
+  font-size: 0.7rem;
+  line-height: 1;
+}
+
+.label {
+  line-height: 1;
+}
+
+/* ── Status variants ─────────────────────────────────────── */
+.statusOpen {
+  background: var(--bear-status-open-bg);
+  color: var(--bear-status-open-text);
+}
+
+.statusFunded {
+  background: var(--bear-status-funded-bg);
+  color: var(--bear-status-funded-text);
+}
+
+.statusSubmitted {
+  background: var(--bear-status-submitted-bg);
+  color: var(--bear-status-submitted-text);
+}
+
+.statusCompleted {
+  background: var(--bear-status-completed-bg);
+  color: var(--bear-status-completed-text);
+}
+
+.statusRejected {
+  background: var(--bear-status-rejected-bg);
+  color: var(--bear-status-rejected-text);
+}
+
+.statusCancelled {
+  background: var(--bear-status-cancelled-bg);
+  color: var(--bear-status-cancelled-text);
+}
+
+/* ── Pulse animation ─────────────────────────────────────── */
+@keyframes bear-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.65; }
+}
+
+.pulse {
+  animation: bear-pulse 1.8s ease-in-out infinite;
+}
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .pulse {
+    animation: none;
+  }
+}

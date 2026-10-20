@@ -1,0 +1,228 @@
+/* ============================================================
+   AgentCard CSS Module
+   Uses --bear-* custom properties for full theme control.
+   Light-mode defaults are set on :root.
+   Dark mode is activated by [data-theme='dark'] on any ancestor.
+   ============================================================ */
+
+:root {
+  --bear-card-bg: #ffffff;
+  --bear-card-border: #e2e8f0;
+  --bear-card-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  --bear-card-shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.12);
+  --bear-card-radius: 12px;
+
+  --bear-text-primary: #1a202c;
+  --bear-text-secondary: #718096;
+  --bear-text-muted: #a0aec0;
+
+  --bear-accent: #6c63ff;
+  --bear-accent-hover: #5a52d5;
+  --bear-accent-fg: #ffffff;
+
+  --bear-tag-bg: #eef2ff;
+  --bear-tag-text: #4338ca;
+
+  --bear-avatar-bg: #6c63ff;
+  --bear-avatar-fg: #ffffff;
+
+  --bear-score-bg: #f0fdf4;
+  --bear-score-text: #166534;
+
+  --bear-link-color: #6c63ff;
+}
+
+[data-theme='dark'] {
+  --bear-card-bg: #1e2130;
+  --bear-card-border: #2d3250;
+  --bear-card-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  --bear-card-shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.6);
+
+  --bear-text-primary: #e2e8f0;
+  --bear-text-secondary: #94a3b8;
+  --bear-text-muted: #64748b;
+
+  --bear-accent: #818cf8;
+  --bear-accent-hover: #6366f1;
+  --bear-accent-fg: #ffffff;
+
+  --bear-tag-bg: #312e81;
+  --bear-tag-text: #c7d2fe;
+
+  --bear-avatar-bg: #818cf8;
+  --bear-avatar-fg: #0f172a;
+
+  --bear-score-bg: #14532d;
+  --bear-score-text: #86efac;
+
+  --bear-link-color: #818cf8;
+}
+
+/* ── Card shell ──────────────────────────────────────────── */
+.card {
+  background: var(--bear-card-bg);
+  border: 1px solid var(--bear-card-border);
+  border-radius: var(--bear-card-radius);
+  box-shadow: var(--bear-card-shadow);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+  max-width: 360px;
+  width: 100%;
+}
+
+.card:hover {
+  box-shadow: var(--bear-card-shadow-hover);
+  transform: translateY(-2px);
+}
+
+/* ── Header ──────────────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.avatar {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: var(--bear-avatar-bg);
+  color: var(--bear-avatar-fg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.titleBlock {
+  flex: 1;
+  overflow: hidden;
+}
+
+.name {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--bear-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.owner {
+  font-size: 0.75rem;
+  color: var(--bear-text-muted);
+  font-family: monospace;
+}
+
+/* ── Score badge ─────────────────────────────────────────── */
+.score {
+  background: var(--bear-score-bg);
+  border-radius: 8px;
+  padding: 0.25rem 0.5rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.scoreValue {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--bear-score-text);
+  line-height: 1.2;
+}
+
+.scoreLabel {
+  display: block;
+  font-size: 0.65rem;
+  color: var(--bear-score-text);
+  opacity: 0.75;
+}
+
+/* ── Description ─────────────────────────────────────────── */
+.description {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--bear-text-secondary);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── Tags ────────────────────────────────────────────────── */
+.tags {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+.tag {
+  background: var(--bear-tag-bg);
+  color: var(--bear-tag-text);
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  text-transform: lowercase;
+  letter-spacing: 0.01em;
+}
+
+/* ── Footer ──────────────────────────────────────────────── */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--bear-card-border);
+}
+
+.metaLink {
+  font-size: 0.8rem;
+  color: var(--bear-link-color);
+  text-decoration: none;
+}
+
+.metaLink:hover,
+.metaLink:focus-visible {
+  text-decoration: underline;
+  outline: 2px solid var(--bear-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.hireButton {
+  background: var(--bear-accent);
+  color: var(--bear-accent-fg);
+  border: none;
+  border-radius: 8px;
+  padding: 0.45rem 1.1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.hireButton:hover {
+  background: var(--bear-accent-hover);
+}
+
+.hireButton:active {
+  transform: scale(0.97);
+}
+
+.hireButton:focus-visible {
+  outline: 2px solid var(--bear-accent);
+  outline-offset: 3px;
+}

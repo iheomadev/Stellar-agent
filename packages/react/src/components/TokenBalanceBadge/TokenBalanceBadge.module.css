@@ -1,0 +1,141 @@
+/* ============================================================
+   TokenBalanceBadge CSS Module
+   ============================================================ */
+
+:root {
+  --bear-balance-bg:      #f0fdf4;
+  --bear-balance-border:  #bbf7d0;
+  --bear-balance-text:    #166534;
+  --bear-balance-icon:    #22c55e;
+  --bear-balance-symbol:  #16a34a;
+  --bear-balance-sep:     #4ade80;
+
+  --bear-balance-error-bg:    #fef2f2;
+  --bear-balance-error-border: #fecaca;
+  --bear-balance-error-text:  #991b1b;
+
+  --bear-balance-loading-bg:   #f8fafc;
+  --bear-balance-loading-border: #e2e8f0;
+
+  --bear-skeleton-from: #e2e8f0;
+  --bear-skeleton-to:   #f8fafc;
+}
+
+[data-theme='dark'] {
+  --bear-balance-bg:      #052e16;
+  --bear-balance-border:  #166534;
+  --bear-balance-text:    #86efac;
+  --bear-balance-icon:    #4ade80;
+  --bear-balance-symbol:  #4ade80;
+  --bear-balance-sep:     #166534;
+
+  --bear-balance-error-bg:    #450a0a;
+  --bear-balance-error-border: #7f1d1d;
+  --bear-balance-error-text:  #fca5a5;
+
+  --bear-balance-loading-bg:   #1e2130;
+  --bear-balance-loading-border: #2d3250;
+
+  --bear-skeleton-from: #2d3250;
+  --bear-skeleton-to:   #3d4470;
+}
+
+/* ── Base badge ──────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--bear-balance-border);
+  background: var(--bear-balance-bg);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--bear-balance-text);
+  transition: box-shadow 0.15s ease;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+/* ── State variants ──────────────────────────────────────── */
+.loading {
+  background: var(--bear-balance-loading-bg);
+  border-color: var(--bear-balance-loading-border);
+  color: var(--bear-balance-text);
+  opacity: 0.85;
+}
+
+.error {
+  background: var(--bear-balance-error-bg);
+  border-color: var(--bear-balance-error-border);
+  color: var(--bear-balance-error-text);
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  box-shadow: 0 0 0 3px var(--bear-balance-border);
+}
+
+.clickable:focus-visible {
+  outline: 2px solid var(--bear-balance-icon);
+  outline-offset: 2px;
+}
+
+/* ── Inner elements ──────────────────────────────────────── */
+.tokenIcon {
+  color: var(--bear-balance-icon);
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+.tokenSymbol {
+  color: var(--bear-balance-symbol);
+  letter-spacing: 0.03em;
+}
+
+.separator {
+  color: var(--bear-balance-sep);
+  font-weight: 300;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.amount {
+  font-variant-numeric: tabular-nums;
+}
+
+.errorText {
+  opacity: 0.7;
+}
+
+/* ── Loading skeleton ────────────────────────────────────── */
+@keyframes bear-shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+.skeleton {
+  display: inline-block;
+  width: 3.5rem;
+  height: 0.7em;
+  border-radius: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--bear-skeleton-from) 25%,
+    var(--bear-skeleton-to)   50%,
+    var(--bear-skeleton-from) 75%
+  );
+  background-size: 200% 100%;
+  animation: bear-shimmer 1.4s ease-in-out infinite;
+  vertical-align: middle;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+    background: var(--bear-skeleton-from);
+  }
+}

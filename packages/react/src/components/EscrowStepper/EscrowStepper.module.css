@@ -1,0 +1,193 @@
+/* ============================================================
+   EscrowStepper CSS Module
+   ============================================================ */
+
+:root {
+  --bear-stepper-track: #e2e8f0;
+  --bear-stepper-filled: #6c63ff;
+  --bear-stepper-bg: #ffffff;
+
+  --bear-step-pending-bg:    #f1f5f9;
+  --bear-step-pending-text:  #94a3b8;
+  --bear-step-pending-border: #e2e8f0;
+
+  --bear-step-active-bg:    #6c63ff;
+  --bear-step-active-text:  #ffffff;
+  --bear-step-active-border: #6c63ff;
+  --bear-step-active-glow:  rgba(108, 99, 255, 0.35);
+
+  --bear-step-done-bg:    #6c63ff;
+  --bear-step-done-text:  #ffffff;
+  --bear-step-done-border: #6c63ff;
+
+  --bear-step-label-pending:  #94a3b8;
+  --bear-step-label-active:   #1a202c;
+  --bear-step-label-done:     #6c63ff;
+
+  --bear-step-desc-color: #718096;
+}
+
+[data-theme='dark'] {
+  --bear-stepper-track: #2d3250;
+  --bear-stepper-filled: #818cf8;
+  --bear-stepper-bg: #1e2130;
+
+  --bear-step-pending-bg:    #2d3250;
+  --bear-step-pending-text:  #64748b;
+  --bear-step-pending-border: #3d4470;
+
+  --bear-step-active-bg:    #818cf8;
+  --bear-step-active-text:  #0f172a;
+  --bear-step-active-border: #818cf8;
+  --bear-step-active-glow:  rgba(129, 140, 248, 0.4);
+
+  --bear-step-done-bg:    #4f46e5;
+  --bear-step-done-text:  #ffffff;
+  --bear-step-done-border: #4f46e5;
+
+  --bear-step-label-pending:  #64748b;
+  --bear-step-label-active:   #e2e8f0;
+  --bear-step-label-done:     #818cf8;
+
+  --bear-step-desc-color: #94a3b8;
+}
+
+/* ── Stepper layout ──────────────────────────────────────── */
+.stepper {
+  width: 100%;
+}
+
+.list {
+  display: flex;
+  align-items: flex-start;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+/* ── Individual step ─────────────────────────────────────── */
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+  text-align: center;
+}
+
+/* ── Connector line ──────────────────────────────────────── */
+.connector {
+  position: absolute;
+  top: 1.1rem; /* vertically center on the circle */
+  right: 50%;
+  left: calc(-50%);
+  height: 2px;
+  background: var(--bear-stepper-track);
+  z-index: 0;
+  /* push connector behind circles */
+  margin: 0 1.5rem; /* don't overlap circles */
+  transition: background 0.3s ease;
+}
+
+.connectorFilled {
+  background: var(--bear-stepper-filled);
+}
+
+/* ── Step circle ─────────────────────────────────────────── */
+.circle {
+  position: relative;
+  z-index: 1;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  border: 2px solid var(--bear-step-pending-border);
+  background: var(--bear-step-pending-bg);
+  color: var(--bear-step-pending-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: default;
+  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  padding: 0;
+  line-height: 1;
+  /* reset button styles */
+  font-family: inherit;
+  outline: none;
+}
+
+.circle:focus-visible {
+  outline: 2px solid var(--bear-stepper-filled);
+  outline-offset: 3px;
+}
+
+/* Completed step */
+.completed .circle {
+  background: var(--bear-step-done-bg);
+  border-color: var(--bear-step-done-border);
+  color: var(--bear-step-done-text);
+  cursor: pointer;
+}
+
+.completed .circle:not(:disabled):hover {
+  filter: brightness(1.12);
+}
+
+/* Active step */
+.active .circle {
+  background: var(--bear-step-active-bg);
+  border-color: var(--bear-step-active-border);
+  color: var(--bear-step-active-text);
+  box-shadow: 0 0 0 4px var(--bear-step-active-glow);
+}
+
+/* ── Labels ──────────────────────────────────────────────── */
+.label {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--bear-step-label-pending);
+  transition: color 0.25s ease;
+  white-space: nowrap;
+}
+
+.completed .label {
+  color: var(--bear-step-label-done);
+}
+
+.active .label {
+  color: var(--bear-step-label-active);
+  font-weight: 600;
+}
+
+/* ── Description (visually hidden, read by screen readers) ── */
+.description {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Animate active step circle */
+@keyframes bear-step-pop {
+  0%   { transform: scale(0.85); }
+  60%  { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.active .circle {
+  animation: bear-step-pop 0.3s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .active .circle {
+    animation: none;
+  }
+}

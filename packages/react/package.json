@@ -1,0 +1,46 @@
+{
+  "name": "@bear-protocol/react",
+  "version": "0.1.0",
+  "description": "React UI component library for Bear Protocol — AgentCard, JobStatusBadge, EscrowStepper, TokenBalanceBadge",
+  "author": "Bear Protocol Contributors",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext .ts,.tsx"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "typescript": "^5.3.0"
+  },
+  "keywords": [
+    "bear-protocol",
+    "stellar",
+    "react",
+    "components",
+    "ai-agents",
+    "web3"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sonoflawal-1/Stellar-agent"
+  }
+}
